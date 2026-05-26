@@ -1,0 +1,47 @@
+const express = require("express");
+const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+require("dotenv").config();
+
+const authRoutes = require("./routes/authRoutes");
+
+const app = express();
+app.use(cookieParser());
+
+app.use(cors());
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("API Running");
+}); 
+
+app.post("/test", (req, res) => {
+  console.log("TEST ROUTE HIT");
+
+  res.json({
+    success: true,
+  });
+});
+
+app.use("/api/auth", authRoutes);
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on ${PORT}`);
+});
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+
+    console.log("MongoDB Connected");
+  } catch (error) {
+    console.log(error);
+
+    process.exit(1);
+  }
+};
+
+connectDB();
