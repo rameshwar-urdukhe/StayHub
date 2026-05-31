@@ -28,6 +28,8 @@ const Navbar = () => {
           <>
             <p>Welcome {user.user.name}</p>
 
+            <Link to="/dashboard">Dashboard</Link>
+
             <button
               onClick={handleLogout}
               className="bg-red-500 px-4 py-2 rounded"
@@ -38,8 +40,9 @@ const Navbar = () => {
         ) : (
           <>
             <Link to="/login">Login</Link>
-
             <Link to="/register">Register</Link>
+            
+            <Link to="/dashboard">Dashboard</Link>
           </>
         )}
       </div>
