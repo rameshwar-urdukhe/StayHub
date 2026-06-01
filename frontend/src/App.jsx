@@ -5,6 +5,8 @@ import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminRoute from "./components/AdminRoute";
 
 
 function App() {
@@ -25,6 +27,16 @@ function App() {
             </ProtectedRoute>
           }
         />
+        
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          }
+        />
+
         <Route path="/login" element={<Login />} />
 
         <Route path="/register" element={<Register />} />
