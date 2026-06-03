@@ -5,6 +5,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const authRoutes = require("./routes/authRoutes");
+const propertyRoutes = require("./routes/propertyRoutes");
 
 const app = express();
 app.use(cookieParser());
@@ -31,6 +32,7 @@ app.post("/test", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/properties", propertyRoutes);
 
 const PORT = process.env.PORT || 5000;
 
