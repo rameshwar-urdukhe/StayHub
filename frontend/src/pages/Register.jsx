@@ -10,6 +10,7 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
+    role: "user",
   });
 
   const handleChange = (e) => {
@@ -62,6 +63,16 @@ const Register = () => {
           onChange={handleChange}
           className="w-full border p-3 mb-4 rounded"
         />
+
+        <select
+          name="role"
+          value={formData.role}
+          onChange={handleChange}
+          className="w-full border p-3 mb-4 rounded"
+        >
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
 
         <input
           type="password"

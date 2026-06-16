@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
@@ -7,39 +8,38 @@ import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminRoute from "./components/AdminRoute";
+import PropertyDetails from "./pages/PropertyDetails";
+import AddProperty from "./pages/AddProperty";
+import EditProperty from "./pages/EditProperty";
 
 
 function App() {
   return (
     <>
       <Navbar />
-
       <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/properties/:id" element={<PropertyDetails />} />
+
         <Route
-          path="/"
-          element={<h1 className="text-3xl p-10">Home Page</h1>}
-        />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        
-        <Route
-          path="/admin"
+          path="/add-property"
           element={
             <AdminRoute>
-              <AdminDashboard />
+              <AddProperty />
             </AdminRoute>
           }
         />
 
-        <Route path="/login" element={<Login />} />
-
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/edit-property/:id"
+          element={
+            <AdminRoute>
+              <EditProperty />
+            </AdminRoute>
+          }
+        />
       </Routes>
     </>
   );

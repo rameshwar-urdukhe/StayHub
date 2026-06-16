@@ -6,7 +6,7 @@ const register = async (req, res) => {
   try {
     console.log(req.body);
     console.log("Register route hit");
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
     const userExists = await User.findOne({ email });
 
@@ -22,6 +22,7 @@ const register = async (req, res) => {
       name,
       email,
       password: hashedPassword,
+      role,
     });
 
     res.status(201).json({

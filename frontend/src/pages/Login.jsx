@@ -1,10 +1,13 @@
 import { useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import API from "../utils/api";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -28,9 +31,10 @@ const Login = () => {
 
       alert("Login Successful");
 
+      navigate("/");
+
       console.log(res.data);
     } catch (error) {
-      console.log(error);
 
       alert("Login Failed");
     }

@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-
 import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
@@ -9,9 +8,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    
     logout();
-
     navigate("/login");
   };
 
@@ -26,9 +23,17 @@ const Navbar = () => {
 
         {user ? (
           <>
-            <p>Welcome {user.user.name}</p>
+            <p>Welcome, {user.user.name}</p>
 
-            <Link to="/dashboard">Dashboard</Link>
+            {/* Only Admin Can See Add Property */}
+            {user.user.role === "admin" && (
+              <Link
+                to="/add-property"
+                className="bg-green-600 px-4 py-2 rounded"
+              >
+                Add Property
+              </Link>
+            )}
 
             <button
               onClick={handleLogout}
@@ -40,9 +45,8 @@ const Navbar = () => {
         ) : (
           <>
             <Link to="/login">Login</Link>
+
             <Link to="/register">Register</Link>
-            
-            <Link to="/dashboard">Dashboard</Link>
           </>
         )}
       </div>

@@ -36,10 +36,15 @@ const getProperties = async (req, res) => {
 
 const getProperty = async (req, res) => {
   try {
-    const property = await Property.findById(req.params.id).populate(
-      "owner",
-      "name email",
-    );
+const property = await Property.findById(req.params.id)
+  .populate("owner", "name email")
+  .populate({
+    path: "reviews",
+    populate: {
+      path: "user",
+      select: "name",
+    },
+  });
 
     if (!property) {
       return res.status(404).json({
@@ -61,15 +66,6 @@ const getProperty = async (req, res) => {
 const updateProperty = async (req, res) => {
   try {
     const property = await Property.findById(req.params.id);
-
-    if (
-      property.owner.toString() !== req.user.id &&
-      req.user.role !== "admin"
-    ) {
-      return res.status(403).json({
-        message: "Access denied",
-      });
-    }
 
     if (!property) {
       return res.status(404).json({
@@ -109,6 +105,7 @@ const deleteProperty = async (req, res) => {
             message: "Access denied",
           });
         }
+
 
     if (!property) {
       return res.status(404).json({
