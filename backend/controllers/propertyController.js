@@ -16,18 +16,48 @@ const createProperty = async (req, res) => {
 };
 
 const getProperties = async (req, res) => {
-
   try {
+    const { search, sort } = req.query;
 
-    const properties = await Property.find().populate("owner", "name email");
+    let query = {};
+    let sortOption = {};
 
-    res.status(200).json({
+    // Search by title OR location
+    if (search) {
+      query.$or = [
+        {
+          title: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          location: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+      ];
+    }
+
+    // Sort
+    if (sort === "low") {
+      sortOption.price = 1;
+    }
+
+    if (sort === "high") {
+      sortOption.price = -1;
+    }
+
+    const properties = await Property.find(query).sort(sortOption);
+
+    res.json({
       success: true,
-      count: properties.length,
       properties,
     });
-
   } catch (error) {
+    console.log(error);
+
     res.status(500).json({
       message: error.message,
     });
