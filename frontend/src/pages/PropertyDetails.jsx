@@ -8,6 +8,7 @@ import API from "../utils/api";
 import PropertyInfo from "../components/PropertyInfo";
 import ReviewForm from "../components/ReviewForm";
 import ReviewList from "../components/ReviewList";
+import BookingForm from "../components/BookingForm";
 
 
 const PropertyDetails = () => {
@@ -64,9 +65,8 @@ const PropertyDetails = () => {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <PropertyInfo property={property} handleDelete={handleDelete} />
-
+      <BookingForm propertyId={property._id} />
       <ReviewForm propertyId={property._id} refreshProperty={fetchProperty} />
-
       <ReviewList reviews={property.reviews} />
     </div>
   );

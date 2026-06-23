@@ -11,6 +11,8 @@ import AdminRoute from "./components/AdminRoute";
 import PropertyDetails from "./pages/PropertyDetails";
 import AddProperty from "./pages/AddProperty";
 import EditProperty from "./pages/EditProperty";
+import MyBookings from "./pages/Bookings";
+import MyProperties from "./pages/MyProperties";
 
 
 function App() {
@@ -40,6 +42,24 @@ function App() {
             </AdminRoute>
           }
         />
+        <Route
+          path="/my-bookings"
+          element={
+            <ProtectedRoute>
+              <MyBookings />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/my-properties"
+          element={
+            <AdminRoute>
+              <MyProperties />
+            </AdminRoute>
+          }
+        />
+
       </Routes>
     </>
   );

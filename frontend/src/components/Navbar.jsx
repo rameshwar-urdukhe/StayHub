@@ -35,6 +35,12 @@ const Navbar = () => {
               </Link>
             )}
 
+            {user?.user?.role === "admin" && (
+              <Link to="/my-properties">My Properties</Link>
+            )}
+
+            <Link to="/my-bookings">My Bookings</Link>
+
             <button
               onClick={handleLogout}
               className="bg-red-500 px-4 py-2 rounded"
