@@ -4,7 +4,7 @@ import API from "../utils/api";
 import SearchBar from "../components/SearchBar";
 
 const Home = () => {
-  const [properties, setProperties] = useState([]);
+const [properties, setProperties] = useState([]);
 const [filters, setFilters] = useState({
   search: "",
   minPrice: "",
@@ -12,20 +12,25 @@ const [filters, setFilters] = useState({
   sort: "",
 });
 
+const [page, setPage] = useState(1);
+const [totalPages, setTotalPages] = useState(1);
+
+
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-       const res = await API.get(
-         `/properties?search=${filters.search}&minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&sort=${filters.sort}`,
-       );
+        const res = await API.get(
+          `/properties?search=${filters.search}&sort=${filters.sort}&page=${page}`,
+        );
         setProperties(res.data.properties);
+        setTotalPages(res.data.totalPages);
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchProperties();
-  }, [filters]);
+  }, [filters, page]);
 
   return (
     <div>
@@ -42,6 +47,25 @@ const [filters, setFilters] = useState({
             <PropertyCard key={property._id} property={property} />
           ))
         )}
+      </div>
+      <div className="flex justify-center gap-3 mt-8">
+        <button
+          disabled={page === 1}
+          onClick={() => setPage(page - 1)}
+          className="px-4 py-2 border rounded"
+        >
+          Prev
+        </button>
+
+        <span>Page {page}</span>
+
+        <button
+          disabled={page === totalPages}
+          onClick={() => setPage(page + 1)}
+          className="px-4 py-2 border rounded"
+        >
+          Next
+        </button>
       </div>
     </div>
   );

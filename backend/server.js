@@ -11,6 +11,10 @@ const propertyRoutes = require("./routes/propertyRoutes");
 const reviewRoutes = require('./routes/reviewRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const bookingRoutes = require("./routes/bookingRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
+const wishlistRoutes = require("./routes/wishlistRoutes");
+
+
 
 const app = express();
 app.use(cookieParser());
@@ -41,6 +45,8 @@ app.use("/api/properties", propertyRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/bookings", bookingRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/wishlist", wishlistRoutes);
 
 const PORT = process.env.PORT || 5000;
 

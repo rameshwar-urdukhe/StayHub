@@ -17,6 +17,26 @@ const PropertyDetails = () => {
   const [property, setProperty] = useState(null);
   const navigate = useNavigate();
 
+  const addToWishlist = async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      await API.post(
+        `/wishlist/${property._id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        },
+      );
+
+      alert("Added To Wishlist");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleDelete = async () => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this property?",
@@ -65,6 +85,12 @@ const PropertyDetails = () => {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <PropertyInfo property={property} handleDelete={handleDelete} />
+      <button
+        onClick={addToWishlist}
+        className="bg-pink-500 text-white px-4 py-2 rounded"
+      >
+        ❤️ Save Property
+      </button>
       <BookingForm propertyId={property._id} />
       <ReviewForm propertyId={property._id} refreshProperty={fetchProperty} />
       <ReviewList reviews={property.reviews} />

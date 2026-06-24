@@ -24,6 +24,24 @@ const MyBookings = () => {
     }
   };
 
+  const cancelBooking = async (id) => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      await API.delete(`/bookings/${id}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+
+      alert("Booking Cancelled");
+
+      fetchBookings();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="max-w-6xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">My Bookings</h1>
@@ -46,6 +64,12 @@ const MyBookings = () => {
             <p>Check In: {new Date(booking.checkIn).toLocaleDateString()}</p>
 
             <p>Check Out: {new Date(booking.checkOut).toLocaleDateString()}</p>
+            <button
+              onClick={() => cancelBooking(booking._id)}
+              className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
+            >
+              Cancel Booking
+            </button>
           </div>
         ))}
       </div>

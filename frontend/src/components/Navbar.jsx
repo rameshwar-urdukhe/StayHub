@@ -35,11 +35,17 @@ const Navbar = () => {
               </Link>
             )}
 
-            {user?.user?.role === "admin" && (
-              <Link to="/my-properties">My Properties</Link>
-            )}
+            {user?.user?.role === "admin" &&
+              ((<Link to="/my-properties">My Properties</Link>),
+              (<Link to="/admin-dashboard">Dashboard</Link>))}
 
             <Link to="/my-bookings">My Bookings</Link>
+
+            <Link to="/profile">Profile</Link>
+
+            <Link to="/wishlist" className="hover:text-blue-500">
+              Wishlist
+            </Link>
 
             <button
               onClick={handleLogout}

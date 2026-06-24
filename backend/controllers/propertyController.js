@@ -22,6 +22,12 @@ const getProperties = async (req, res) => {
     let query = {};
     let sortOption = {};
 
+    const page = Number(req.query.page) || 1;
+
+    const limit = 6;
+
+    const skip = (page - 1) * limit;
+
     // Search by title OR location
     if (search) {
       query.$or = [
@@ -49,11 +55,20 @@ const getProperties = async (req, res) => {
       sortOption.price = -1;
     }
 
-    const properties = await Property.find(query).sort(sortOption);
+    const total = await Property.countDocuments(query);
+
+    const properties = await Property.find(query)
+      .sort(sortOption)
+      .skip(skip)
+      .limit(limit);
 
     res.json({
       success: true,
       properties,
+
+      currentPage: page,
+
+      totalPages: Math.ceil(total / limit),
     });
   } catch (error) {
     console.log(error);

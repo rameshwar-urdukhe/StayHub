@@ -13,6 +13,8 @@ import AddProperty from "./pages/AddProperty";
 import EditProperty from "./pages/EditProperty";
 import MyBookings from "./pages/Bookings";
 import MyProperties from "./pages/MyProperties";
+import Profile from "./pages/Profile";
+import Wishlist from "./pages/Wishlist";
 
 
 function App() {
@@ -60,6 +62,33 @@ function App() {
           }
         />
 
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin-dashboard"
+          element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/wishlist"
+          element={
+            <ProtectedRoute>
+              <Wishlist />
+            </ProtectedRoute>
+          }
+        />
+        
       </Routes>
     </>
   );
