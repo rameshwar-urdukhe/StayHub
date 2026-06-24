@@ -15,6 +15,7 @@ import MyBookings from "./pages/Bookings";
 import MyProperties from "./pages/MyProperties";
 import Profile from "./pages/Profile";
 import Wishlist from "./pages/Wishlist";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -88,8 +89,8 @@ function App() {
             </ProtectedRoute>
           }
         />
-        
       </Routes>
+      <Footer />
     </>
   );
 }
