@@ -28,9 +28,9 @@ app.use(
 
 app.use(express.json());
 
-// app.get("/", (req, res) => {
-//   res.send("API Running");
-// }); 
+app.get("/", (req, res) => {
+  res.send("API Running");
+}); 
 
 // app.post("/test", (req, res) => {
 //   console.log("TEST ROUTE HIT");
