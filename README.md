@@ -7,14 +7,11 @@ StayHub is a full-stack **MERN Stack** web application inspired by Airbnb, where
 ## 🌐 Live Demo
 
 ### Frontend
-https://your-frontend-link.vercel.app
-
+https://stay-hub-ruddy.vercel.app/
 ### Backend API
-https://your-backend-link.onrender.com
-
+https://stayhub-jekv.onrender.com/
 ### Demo Video
-https://youtu.be/your-demo-video-link
-
+coming soon..
 ---
 
 # 📸 Screenshots
@@ -158,7 +155,7 @@ StayHub
 ## Clone Repository
 
 ```bash
-git clone https://github.com/your-username/stayhub.git
+git clone https://github.com/rameshwar-urdukhe/StayHub.git
 
 cd stayhub
 ```
