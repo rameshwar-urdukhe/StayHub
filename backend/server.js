@@ -21,7 +21,7 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://stay-hub-ruddy.vercel.app",
+  "https://stay-hub-ruddy.vercel.app/",
 ];
 
 app.use(
