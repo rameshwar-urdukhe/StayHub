@@ -21,12 +21,12 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://stay-hub-ruddy.vercel.app/",
+  "https://stay-hub-ruddy.vercel.app",
 ];
 
 app.use(
   cors({
-    origin: function (origin, callback) {
+    origin(origin, callback) {
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
@@ -34,7 +34,7 @@ app.use(
       }
     },
     credentials: true,
-  }),
+  })
 );
 
 app.use(express.json());
