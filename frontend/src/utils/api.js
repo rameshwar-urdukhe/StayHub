@@ -9,7 +9,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://stay-hub-ruddy.vercel.app/",
+  baseURL: "https://stayhub-jekv.onrender.com/api",
 });
 
 export default API;
